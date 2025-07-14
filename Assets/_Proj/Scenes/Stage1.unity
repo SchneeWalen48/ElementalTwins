@@ -4510,11 +4510,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
       propertyPath: moveDir
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
       propertyPath: resetDelay
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
+      propertyPath: targetPosOffset.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5277,6 +5281,10 @@ PrefabInstance:
     - target: {fileID: 5148168182493345075, guid: 7e5bc1e259ef6cc4fac7a19405926fa9, type: 3}
       propertyPath: moveDir
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148168182493345075, guid: 7e5bc1e259ef6cc4fac7a19405926fa9, type: 3}
+      propertyPath: targetPosOffset.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5161077814709547108, guid: 7e5bc1e259ef6cc4fac7a19405926fa9, type: 3}
       propertyPath: m_Name
@@ -6390,7 +6398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
       propertyPath: targetPosOffset.y
-      value: 1.5
+      value: 1.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13492,6 +13500,10 @@ PrefabInstance:
     - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
       propertyPath: moveDir
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
+      propertyPath: targetPosOffset.y
+      value: 3.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
