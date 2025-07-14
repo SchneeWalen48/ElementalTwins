@@ -32,7 +32,7 @@ public class Projectiles : MonoBehaviour
     {
       Destroy(gameObject);
     }
-    else if (collision.gameObject.CompareTag("Props") || collision.gameObject.CompareTag("Wall"))
+    else if (collision.gameObject.CompareTag("Props") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Ground"))
     {
       Destroy(gameObject);
     }

@@ -48,6 +48,9 @@ public class Player : MonoBehaviour
   private Dictionary<ItemType, bool> collectedItem = new Dictionary<ItemType, bool>();
 
   public ItemType myAssignedItemType;
+
+  private bool isKnocback = false;
+
   void Awake()
   {
     anim = GetComponent<Animator>();
@@ -78,6 +81,7 @@ public class Player : MonoBehaviour
 
   protected virtual void Move() 
   {
+    if (isKnocback) return;
     float x = Input.GetAxisRaw("Horizontal");
     float currSpeed = rb.velocity.x;
     if (x != 0)
@@ -140,15 +144,6 @@ public class Player : MonoBehaviour
     }
   }
 
-  void OnTriggerEnter2D(Collider2D collision)
-  {
-    if (collision.CompareTag("EProj"))
-    {
-      ApplyDebuff(2.0f);
-      ApplyKnockback((transform.position - collision.transform.position).normalized, 5f);
-      Destroy(collision.gameObject);
-    }
-  }
 
   public void SetControlled(bool controlled)
   {
@@ -290,10 +285,20 @@ public class Player : MonoBehaviour
 
   public void ApplyKnockback(Vector2 dir, float force)
   {
-    if(rb != null)
+    if (rb != null && rb.bodyType == RigidbodyType2D.Dynamic && rb.simulated)
     {
+      isKnocback = true;
+      rb.velocity = Vector2.zero;
       rb.AddForce(dir * force, ForceMode2D.Impulse);
+      Debug.Log("[Knockback] Force applied!");
+      StartCoroutine(ResetKnockback());
     }
+  }
+
+  IEnumerator ResetKnockback()
+  {
+    yield return new WaitForSeconds(0.3f);
+    isKnocback = false;
   }
 
   IEnumerator RemoveDebuff(float amount, float delay)

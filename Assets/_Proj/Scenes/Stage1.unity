@@ -4406,6 +4406,14 @@ PrefabInstance:
       propertyPath: moveDir
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
+      propertyPath: resetDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
+      propertyPath: moveDuration
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6394,6 +6402,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
       propertyPath: moveDir
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
+      propertyPath: resetDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
+      propertyPath: moveDuration
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
@@ -13502,6 +13518,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
+      propertyPath: resetDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
+      propertyPath: moveDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
       propertyPath: targetPosOffset.y
       value: 3.5
       objectReference: {fileID: 0}
@@ -14369,6 +14393,14 @@ PrefabInstance:
       propertyPath: playerTarget
       value: 
       objectReference: {fileID: 1266295120}
+    - target: {fileID: 3892149870683116548, guid: 0d70e6637f6faf9419915f9dea6168c8, type: 3}
+      propertyPath: knockbackForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892149870683116548, guid: 0d70e6637f6faf9419915f9dea6168c8, type: 3}
+      propertyPath: debuffPlayerSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4029152835496215396, guid: 0d70e6637f6faf9419915f9dea6168c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.83

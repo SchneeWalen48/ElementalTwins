@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEngine;
 
 public class EnemyAttacker : Enemy
 {
@@ -16,16 +17,20 @@ public class EnemyAttacker : Enemy
   public float debuffPlayerSpeed = 1f;
   public float knockbackForce = 0.5f;
   public float projLifetime = 2f;
+
   [Header("Item Drop Settings")]
   public GameObject item1;
   public GameObject item2;
 
   private float atckTimer;
+
+  public Animator anim;
   protected override void Start()
   {
     base.Start();
     currHp = maxHp;
     atckTimer = 0;
+    anim = GetComponent<Animator>();
     ChangeState(new AttackerIdle(this));
   }
 
@@ -62,7 +67,7 @@ public class EnemyAttacker : Enemy
   {
     currHp -= dmg;
     Debug.Log("Attacker current HP : " +  currHp);
-    if (currHp < 0)
+    if (currHp <= 0)
     {
       Die();
     }
@@ -71,7 +76,6 @@ public class EnemyAttacker : Enemy
   private void Die()
   {
     Debug.Log("Attacker Died");
-    DropItem();
     Destroy(gameObject);
   }
 
@@ -118,7 +122,6 @@ public class EnemyAttacker : Enemy
         float distToPlayer = Vector2.Distance(enemy.playerTarget.position, enemy.transform.position);
         EnemyAttacker attacker = (EnemyAttacker)enemy;
 
-        //TODO : '활성화'레이어를 갖고 있는 플레이어가 있는 방향(x축으로만)으로 회전
         Vector3 targetDir = enemy.playerTarget.position - enemy.transform.position;
         if (targetDir.x > 0)
         {
@@ -126,13 +129,16 @@ public class EnemyAttacker : Enemy
         }
         else if (targetDir.x < 0)
         {
-          //TODO : sprite가 flipX되어야 함!!
           enemy.transform.localScale = new Vector3(-Mathf.Abs(enemy.transform.localScale.x), enemy.transform.localScale.y, enemy.transform.localScale.z);
         }
 
-        if(distToPlayer < attacker.atckRange)
+        Vector2 diff = enemy.playerTarget.position - enemy.transform.position;
+        float distX = Mathf.Abs(diff.x);
+        float distY = Mathf.Abs(diff.y);
+
+        if(distX < enemy.detectRangeX && distY < enemy.detectRangeY)
         {
-          print("공격 상태로 전환...");
+          Debug.Log("Change to Attack State...");
           enemy.ChangeState(new AttackerAttack(attacker));
         }
       }
@@ -148,10 +154,10 @@ public class EnemyAttacker : Enemy
   private class AttackerAttack : EnemyState
   {
     public AttackerAttack(Enemy enemy) : base(enemy) { }
-    
-    public override void Enter()
-    {
-      print("공격 상태 진입");
+
+    public override void Enter() {
+      EnemyAttacker attacker = (EnemyAttacker)enemy;
+      attacker.anim.SetBool("isShot", true);
     }
 
     public override void Execute()
@@ -183,7 +189,8 @@ public class EnemyAttacker : Enemy
 
     public override void Exit()
     {
-      print("공격 상태 종료");
+      EnemyAttacker attacker = (EnemyAttacker)enemy;
+      attacker.anim.SetBool("isShot", false);
     }
   }
 

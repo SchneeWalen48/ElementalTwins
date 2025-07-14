@@ -9,28 +9,31 @@ public class DebuffProjectile : MonoBehaviour
 
   public float lifetime = 3f; // bullet lifetime
 
+  private bool hasHit = false;
   void Start()
   {
     Destroy(gameObject, lifetime);
   }
 
-  void OnTriggerEnter2D(Collider2D collision)
-  {
-    if (collision.gameObject.CompareTag("Player"))
-    {
-      Player player = collision.gameObject.GetComponent<Player>();
-      if (player != null)
-      {
-        player.ApplyDebuff(moveSpeedDebuff);
 
-        Vector2 knockbackDirection = (player.transform.position - transform.position).normalized;
-        player.ApplyKnockback(knockbackDirection, knockbackForce);
+  void OnTriggerEnter2D(Collider2D other)
+  {
+    if(hasHit) return;
+
+    if (other.CompareTag("Player"))
+    {
+      hasHit = true;
+      if(other.TryGetComponent<Player>(out var player))
+      {
+        Vector2 knockDir = (player.transform.position - transform.position).normalized;
+        player.ApplyDebuff(moveSpeedDebuff);
+        player.ApplyKnockback(knockDir, knockbackForce);
       }
       Destroy(gameObject);
     }
-    else if (collision.gameObject.CompareTag("Props") || collision.gameObject.CompareTag("Wall"))
+    else if(other.CompareTag("Ground") || other.CompareTag("Wall") || other.CompareTag("Enemy") || other.CompareTag("Props"))
     {
-      Destroy(gameObject);
+      Destroy(gameObject) ;
     }
   }
 }
