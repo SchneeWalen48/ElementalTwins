@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build.Content;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
-using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
   public ItemType myAssignedItemType;
 
   private bool isKnocback = false;
+
+  private Coroutine parentCoroutine;
 
   void Awake()
   {
@@ -137,6 +139,14 @@ public class Player : MonoBehaviour
     {
       isGrounded = true;
       anim.SetBool("isJump", false);
+
+      if(parentCoroutine != null)
+      {
+        StopCoroutine(parentCoroutine);
+        parentCoroutine = null;
+      }
+
+      parentCoroutine =  StartCoroutine(SetParentDelay(collision.transform));
     }
     if (collision.gameObject.CompareTag("Portal"))
     {
@@ -144,11 +154,52 @@ public class Player : MonoBehaviour
     }
   }
 
+  private void OnCollisionExit2D(Collision2D collision)
+  {
+    if (collision.gameObject.CompareTag("Ground"))
+    {
+      if(parentCoroutine != null)
+      {
+        StopCoroutine(parentCoroutine);
+        parentCoroutine = null;
+      }
+      if(this != null && isActiveAndEnabled && gameObject.activeInHierarchy)
+      {
+        StartCoroutine(UnsetParentDelay());
+      }
+      else
+      {
+        if(Application.isPlaying)
+          transform.parent = null;
+      }
+    }
+  }
+
+  IEnumerator SetParentDelay(Transform newP)
+  {
+    yield return null;
+    if(this != null && isActiveAndEnabled && gameObject.activeInHierarchy)
+    {
+      transform.parent = newP;
+    }
+  }
+
+  IEnumerator UnsetParentDelay()
+  {
+    yield return null;
+    if (this != null && isActiveAndEnabled && gameObject.activeInHierarchy && Application.isPlaying)
+    {
+      transform.parent = null;
+    }
+  }
 
   public void SetControlled(bool controlled)
   {
     isControlled = controlled;
-
+    if (!controlled)
+    {
+      transform.parent = null;
+    }
     gameObject.layer = LayerMask.NameToLayer(controlled ? "PlayerActive" : "PlayerInActive");
     rb.constraints = RigidbodyConstraints2D.FreezeRotation;
   }
