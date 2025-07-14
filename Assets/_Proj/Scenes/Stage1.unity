@@ -797,7 +797,7 @@ MonoBehaviour:
   patrolSpeed: 10
   chaseSpeed: 10
   rb: {fileID: 135561503}
-  sr: {fileID: 0}
+  sr: {fileID: 908638391}
 --- !u!4 &135561506
 Transform:
   m_ObjectHideFlags: 0
@@ -5076,7 +5076,7 @@ MonoBehaviour:
   patrolSpeed: 10
   chaseSpeed: 10
   rb: {fileID: 587141248}
-  sr: {fileID: 0}
+  sr: {fileID: 103110108}
 --- !u!4 &587141251
 Transform:
   m_ObjectHideFlags: 0
@@ -13405,7 +13405,7 @@ MonoBehaviour:
   patrolSpeed: 10
   chaseSpeed: 10
   rb: {fileID: 1649599121}
-  sr: {fileID: 0}
+  sr: {fileID: 1909505446}
 --- !u!4 &1649599124
 Transform:
   m_ObjectHideFlags: 0
@@ -13758,7 +13758,7 @@ MonoBehaviour:
   patrolSpeed: 10
   chaseSpeed: 10
   rb: {fileID: 1758929749}
-  sr: {fileID: 0}
+  sr: {fileID: 1520848495}
 --- !u!1 &1761110905
 GameObject:
   m_ObjectHideFlags: 0

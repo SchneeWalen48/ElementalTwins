@@ -78,6 +78,7 @@ public class EnemyHazard : Enemy
       float patrolRange = 2f;
       patrolLX = h.originPos.x - patrolRange;
       patrolRX = h.originPos.x + patrolRange;
+      h.sr.flipX = (dir == 1);
     }
     public override void Enter() => print("patrol start");
     public override void Execute()
@@ -105,8 +106,8 @@ public class EnemyHazard : Enemy
 
       h.rb.MovePosition(taragetPos);
 
-      if (currPos.x >= patrolRX && dir == 1) dir = -1;
-      else if (currPos.x <= patrolLX && dir == -1) dir = 1;
+      if (currPos.x >= patrolRX && dir == 1) { dir = -1; h.sr.flipX = false; }
+      else if (currPos.x <= patrolLX && dir == -1) {dir = 1; h.sr.flipX = true;}
     }
 
     public override void Exit() => print("end patrol");
@@ -132,7 +133,6 @@ public class EnemyHazard : Enemy
         return;
       }
 
-
       Vector2 currPos = h.rb.position;
       Vector2 targetPos = enemy.playerTarget.position;
 
@@ -152,7 +152,8 @@ public class EnemyHazard : Enemy
       }
 
       float dir = Mathf.Sign(targetPos.x - currPos.x);
-      Vector2 nextPos = currPos + Vector2.right * dir * h.chaseSpeed * Time.deltaTime;
+      if (dir < 0) h.sr.flipX = false; else if(dir > 0) h.sr.flipX = true;
+        Vector2 nextPos = currPos + Vector2.right * dir * h.chaseSpeed * Time.deltaTime;
       
       h.rb.MovePosition(nextPos);
     }
@@ -188,12 +189,14 @@ public class EnemyHazard : Enemy
         patrolLX = obsX;
         patrolRX = obsX + patrolRange;
         dir = 1;
+        h.sr.flipX = true;
       }
       else
       {
         patrolLX = obsX - patrolRange;
         patrolRX = obsX;
         dir = -1;
+        h.sr.flipX = false;
       }
     }
     public override void Enter() => Debug.Log("Restrict Patrol Start...");
@@ -201,7 +204,6 @@ public class EnemyHazard : Enemy
     public override void Execute()
     {
       EnemyHazard h = (EnemyHazard)enemy;
-
       if (enemy.playerTarget == null || Mathf.Abs(enemy.playerTarget.position.x - enemy.transform.position.x) > enemy.detectRangeX)
       {
         enemy.ChangeState(new HazardReturn(enemy));
@@ -228,8 +230,8 @@ public class EnemyHazard : Enemy
       Vector2 nextPos = currPos + Vector2.right * dir * h.patrolSpeed * Time.deltaTime;
       h.rb.MovePosition(nextPos);
 
-      if (currPos.x >= patrolRX - 0.05f && dir == 1) dir = -1;
-      else if (currPos.x <= patrolLX + 0.05f && dir == -1) dir = 1;
+      if (currPos.x >= patrolRX - 0.05f && dir == 1) { dir = -1; h.sr.flipX = false; }
+      else if (currPos.x <= patrolLX + 0.05f && dir == -1) {dir = 1; h.sr.flipX = true; }
     }
 
     public override void Exit() { }
@@ -250,7 +252,6 @@ public class EnemyHazard : Enemy
     public override void Execute()
     {
       EnemyHazard h = (EnemyHazard)enemy;
-
       if (h.isBlocked)
       {
         Debug.Log("Returning...Blocked by a prop!! I want to go home!!");
@@ -260,8 +261,8 @@ public class EnemyHazard : Enemy
 
       Vector2 currPos = h.rb.position;
       float dir = Mathf.Sign(h.originPos.x - currPos.x);
-
-      Vector2 nextPos = currPos + Vector2.right * dir * returnSpeed * Time.deltaTime;
+      if (dir < 0) h.sr.flipX = false; else if (dir > 0) h.sr.flipX = true;
+        Vector2 nextPos = currPos + Vector2.right * dir * returnSpeed * Time.deltaTime;
       
       h.rb.MovePosition(nextPos);
 
