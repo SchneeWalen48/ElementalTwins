@@ -1,87 +1,126 @@
 ﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
 
 public class Generator : MonoBehaviour
 {
   [Header("Required Items for Activation")]
-  public ItemType player1RequiredItemType; // ElecBoy's
-  public ItemType player2RequiredItemType; // IceBoy's
+  public ItemType elecItem = ItemType.PowerCore; // ElecBoy's
+  public ItemType iceItem = ItemType.CoolCore; // IceBoy's
 
-  [Header("Activation Settings")]
+  public GameObject portalPrefab;
+  public Transform portalPos;
+  public Transform itemDisplay_E;
+  public Transform itemDisplay_I;
+  public GameObject elecVisualPrefab;
+  public GameObject iceVisualPrefab;
+  public Transform leverTrans;
+
+
+  [Header("Settings")]
   public float interactionRadius = 2f; // The radius within which the player must press the key near a generator.
-  public GameObject objectToActivate; // generate portal
+  public Text msgText;
 
   private bool isActivated = false;
-  
-  // Track player with generator running when key is pressed
-  private Player player1InVicinity = null;
-  private Player player2InVicinity = null;
+  private bool elecItemRegistered = false;
+  private bool iceItemRegistered = false;
 
-  void Update()
+  private GameObject visualE, visualI;
+
+  public void TryActivate(Player p)
   {
-    if (isActivated) return;
-  }
-
-  public void TryActivate(Player interactingPlayer)
-  {
-    if (isActivated) return;
-
-    if (Vector2.Distance(interactingPlayer.transform.position, transform.position) > interactionRadius)
+    if (isActivated)
     {
-      Debug.Log($"{interactingPlayer.name}is too far from the generator!");
+      Debug.Log("Already running!");
       return;
     }
 
-    if (interactingPlayer.CompareTag("PlayerActive"))
+    if (Vector2.Distance(p.transform.position, transform.position) > interactionRadius)
     {
-      player1InVicinity = interactingPlayer;
-    }
-    else if (interactingPlayer.CompareTag("PlayerActive"))
-    {
-      player2InVicinity = interactingPlayer;
+      Debug.Log($"{p.name} is too far from the generator!");
+      return;
     }
 
-    CheckAllConditionsAndActivate();
-  }
+    ItemType type = p.myAssignedItemType;
 
-
-  private void CheckAllConditionsAndActivate()
-  {
-    if (player1InVicinity == null || player2InVicinity == null)
+    if (!p.HasItem(type))
     {
-      return; 
+      StartCoroutine(ShowMsg("발전기를 가동하기에 아이템이 충분하지 않습니다"));
+      return;
     }
 
-    bool player1HasItem = player1InVicinity.HasItem(player1RequiredItemType);
-    bool player2HasItem = player2InVicinity.HasItem(player2RequiredItemType);
-
-    Debug.Log($"Player1 ({player1InVicinity.name}) item ({player1RequiredItemType}): {player1HasItem}");
-    Debug.Log($"Player2 ({player2InVicinity.name}) item ({player2RequiredItemType}): {player2HasItem}");
-
-    if (player1HasItem && player2HasItem)
+    if (type == iceItem && !iceItemRegistered)
     {
-      ActivateGenerator();
+      iceItemRegistered = true;
+      p.RemoveItem(type);
+      Debug.Log($"{type} assigned");
+      visualI = ShowVisual(itemDisplay_I, iceVisualPrefab);
+    }
+    else if(type == elecItem && !elecItemRegistered)
+    {
+      if (!iceItemRegistered)
+      {
+        StartCoroutine(ShowMsg("발전기를 먼저 식히세요."));
+        return;
+      }
+      elecItemRegistered = true;
+      p.RemoveItem(type);
+      Debug.Log($"{type} assigned");
+      visualE = ShowVisual(itemDisplay_E, elecVisualPrefab);
     }
     else
     {
-      Debug.Log("Either not all items have been collected, or neither players has attempted to interact near the generator.");
-      // 아이템이 부족하다는 시각/청각 피드백 제공 가능
+      Debug.Log("Already Assigned or Wrong order"); return;
     }
+
+    if(elecItemRegistered && iceItemRegistered)
+    {
+      ActivateGenerator();
+    }
+
+    Debug.Log($"현재 등록 상태 → Elec: {elecItemRegistered}, Ice: {iceItemRegistered}");
+  }
+
+  private GameObject ShowVisual(Transform target, GameObject prefab)
+  {
+    if (target == null || prefab == null) return null;
+    return Instantiate(prefab, target.position, Quaternion.identity, target);
   }
 
   private void ActivateGenerator()
   {
     isActivated = true;
-    Debug.Log("Generator activatoin successful!");
-
-    if (objectToActivate != null)
-    {
-      objectToActivate.SetActive(true); // generate portal
-    }
+    Debug.Log("The Generator starts running");
+    StartCoroutine(AnimateLeverAndPortal());
   }
 
-  void OnDrawGizmosSelected()
+  IEnumerator AnimateLeverAndPortal()
   {
-    Gizmos.color = Color.red;
-    Gizmos.DrawWireSphere(transform.position, interactionRadius);
+    if (leverTrans != null)
+    {
+      Quaternion from = Quaternion.Euler(0, 0, -45f);
+      Quaternion to = Quaternion.Euler(0, 0, -90f);
+      float t = 0f;
+      while (t < 0.4f)
+      {
+        leverTrans.localRotation = Quaternion.Slerp(from, to, t / 0.4f);
+        t += Time.deltaTime;
+        yield return null;
+      }
+      leverTrans.localRotation = to;
+    }
+    yield return new WaitForSeconds(0.4f);
+
+    if (portalPrefab && portalPos)
+    {
+      Instantiate(portalPrefab, portalPos.position, Quaternion.identity);
+    }
+  }
+  
+  IEnumerator ShowMsg(string msg)
+  {
+    msgText.text = msg;
+    yield return new WaitForSeconds(1f);
+    msgText.text = "";
   }
 }

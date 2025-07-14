@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
 
   public LayerMask levLayer;
   public float levInterRange = 1f;
+  public LayerMask itemLayer;
 
   public Transform respawnPoint;
 
@@ -116,6 +119,14 @@ public class Player : MonoBehaviour
     }
   }
 
+  public void RemoveItem(ItemType type)
+  {
+    if (collectedItem.ContainsKey(type))
+    {
+      collectedItem[type] = false;
+    }
+  }
+
   protected virtual void OnCollisionEnter2D(Collision2D collision)
   {
     if (collision.gameObject.CompareTag("Ground"))
@@ -123,7 +134,19 @@ public class Player : MonoBehaviour
       isGrounded = true;
       anim.SetBool("isJump", false);
     }
-    if (CompareTag("EnemyAtck")) { //TODO : Player가 Enemy나 Enemy가 발사한 총에 3번 맞으면 리스폰
+    if (collision.gameObject.CompareTag("Portal"))
+    {
+      // TODO : 클리어 화면, 기록 보여주기.
+    }
+  }
+
+  void OnTriggerEnter2D(Collider2D collision)
+  {
+    if (collision.CompareTag("EProj"))
+    {
+      ApplyDebuff(2.0f);
+      ApplyKnockback((transform.position - collision.transform.position).normalized, 5f);
+      Destroy(collision.gameObject);
     }
   }
 
@@ -151,8 +174,8 @@ public class Player : MonoBehaviour
     {
       if (levInteractTimer <= 0f)
       {
-        bool interacted = TryInteractLever();
-        if (interacted)
+        bool didSomething = TryInteractLever() || TryItem();
+        if (didSomething)
         {
           levInteractTimer = levInteractCool;
         }
@@ -174,24 +197,47 @@ public class Player : MonoBehaviour
       if (hit.TryGetComponent(out LeverHandle lev))
       {
         lev.TryActivate();
-        leverActivate = true;
+        return true;
 
       }
       if(hit.TryGetComponent(out LeverHandleToggle toggleLev))
       {
         toggleLev.TryToggle();
-        leverActivate = true;
+        return true;
         
       }
 
       if(hit.TryGetComponent(out Generator generator))
       {
         generator.TryActivate(this);
-        leverActivate = true;
         return true;
       }
     }
     return leverActivate;
+  }
+
+  bool TryItem()
+  {
+    Vector2 centre = transform.position + Vector3.up * 0.5f;
+    Collider2D[] hits = Physics2D.OverlapCircleAll(centre, levInterRange, itemLayer);
+    foreach (var hit in hits)
+    {
+      if(hit.TryGetComponent(out Item item))
+      {
+        if(item.itemType == myAssignedItemType)
+        {
+          CollectItem(item.itemType);
+          Destroy(item.gameObject);
+          Debug.Log($"{item.itemType} obtained");
+        }
+        else
+        {
+          Debug.Log("Type Difference! Can't obtain this item");
+        }
+        return true;
+      }
+    }
+    return false;
   }
 
   void OnDrawGizmos()

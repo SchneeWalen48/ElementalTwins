@@ -13,6 +13,8 @@ TagManager:
   - Projectiles
   - EWall
   - ObstaclesAndController
+  - Portal
+  - EProj
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - PropTrigger
   - PropCollider
   - NoCollisionWithProps
-  - 
+  - Item
   - 
   - 
   - 
