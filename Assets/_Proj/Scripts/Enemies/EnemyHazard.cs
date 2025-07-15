@@ -22,8 +22,9 @@ public class EnemyHazard : Enemy
     ChangeState(new HazardPatrol(this));
   }
 
-  void FixedUpdate()
+  protected override void FixedUpdate()
   {
+    base.FixedUpdate();
     if (PlayerManager.Instance != null && PlayerManager.Instance.activePlayerTrans != null)
     {
       this.playerTarget = PlayerManager.Instance.activePlayerTrans;
@@ -80,7 +81,7 @@ public class EnemyHazard : Enemy
       patrolRX = h.originPos.x + patrolRange;
       h.sr.flipX = (dir == 1);
     }
-    public override void Enter() => print("patrol start");
+    public override void Enter() { }
     public override void Execute()
     {
       EnemyHazard h = (EnemyHazard)enemy;
@@ -96,7 +97,6 @@ public class EnemyHazard : Enemy
 
         if (h.isBlocked)
         {
-          Debug.Log("Blocked by a prop or a wall.");
           return;
         }
 
@@ -110,7 +110,7 @@ public class EnemyHazard : Enemy
       else if (currPos.x <= patrolLX && dir == -1) {dir = 1; h.sr.flipX = true;}
     }
 
-    public override void Exit() => print("end patrol");
+    public override void Exit() { }
   }
 
 
@@ -146,7 +146,6 @@ public class EnemyHazard : Enemy
       
       if (h.isBlocked)
       {
-        Debug.Log("Chasing...Blocked by a prop!");
         enemy.ChangeState(new RestrictPatrol(enemy,h.obstaclePos.x));
         return;
       }
@@ -160,7 +159,6 @@ public class EnemyHazard : Enemy
 
     public override void Exit()
     {
-      print("추적 종료");
       // 추적 애니메이션 중지
     }
   }
@@ -199,7 +197,7 @@ public class EnemyHazard : Enemy
         h.sr.flipX = false;
       }
     }
-    public override void Enter() => Debug.Log("Restrict Patrol Start...");
+    public override void Enter() { }
 
     public override void Execute()
     {

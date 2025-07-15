@@ -136,6 +136,7 @@ MonoBehaviour:
   detectRangeX: 5
   detectRangeY: 1
   playerTarget: {fileID: 0}
+  anim: {fileID: 5500539777761266064}
   patrolSpeed: 10
   chaseSpeed: 10
   rb: {fileID: 3288602985019753401}

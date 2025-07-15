@@ -24,18 +24,20 @@ public class EnemyAttacker : Enemy
 
   private float atckTimer;
 
-  public Animator anim;
   protected override void Start()
   {
     base.Start();
     currHp = maxHp;
     atckTimer = 0;
-    anim = GetComponent<Animator>();
     ChangeState(new AttackerIdle(this));
   }
-
-  void FixedUpdate()
+  protected override void Update()
   {
+    base.Update();
+  }
+  protected override void FixedUpdate()
+  {
+    base.FixedUpdate();
     if (PlayerManager.Instance != null && PlayerManager.Instance.activePlayerTrans != null)
     {
       this.playerTarget = PlayerManager.Instance.activePlayerTrans;
@@ -69,7 +71,9 @@ public class EnemyAttacker : Enemy
     Debug.Log("Attacker current HP : " +  currHp);
     if (currHp <= 0)
     {
+      anim.SetTrigger("die");
       Die();
+      Invoke(nameof(Die), 0.5f);
     }
   }
 
@@ -78,7 +82,6 @@ public class EnemyAttacker : Enemy
     Debug.Log("Attacker Died");
     Destroy(gameObject);
   }
-
   private void DropItem()
   {
     GameObject itemDrop = null;
@@ -138,7 +141,6 @@ public class EnemyAttacker : Enemy
 
         if(distX < enemy.detectRangeX && distY < enemy.detectRangeY)
         {
-          Debug.Log("Change to Attack State...");
           enemy.ChangeState(new AttackerAttack(attacker));
         }
       }
@@ -146,7 +148,6 @@ public class EnemyAttacker : Enemy
 
     public override void Exit()
     {
-      print("idle상태 종료");
       //TODO: idle애니메이션 중지
     }
   }
@@ -162,6 +163,8 @@ public class EnemyAttacker : Enemy
 
     public override void Execute()
     {
+      Debug.Log($"[FSM Execute] isFrozen: {enemy.isFrozen}");
+      if (enemy.isFrozen) return;
       EnemyAttacker attacker = (EnemyAttacker)enemy;
       if (attacker.playerTarget == null || Vector2.Distance(attacker.playerTarget.position, attacker.transform.position) > attacker.atckRange)
       {
@@ -183,7 +186,6 @@ public class EnemyAttacker : Enemy
       {
         attacker.ShootProjectile();
         attacker.atckTimer = attacker.atckInterval;
-        //TODO: 공격 애니메이션 중 사격 효과 재생
       }
     }
 
@@ -196,6 +198,7 @@ public class EnemyAttacker : Enemy
 
   private void ShootProjectile()
   {
+    if (isFrozen) return;
     if (projPrefab == null || shotPoint == null) return;
 
     GameObject projGO = Instantiate(projPrefab, shotPoint.position, Quaternion.identity);

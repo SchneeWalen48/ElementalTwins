@@ -31,7 +31,7 @@ TagManager:
   - PropCollider
   - NoCollisionWithProps
   - Item
-  - 
+  - EnemyProj
   - 
   - 
   - 

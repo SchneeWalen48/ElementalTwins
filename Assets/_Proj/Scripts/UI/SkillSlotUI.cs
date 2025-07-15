@@ -3,53 +3,48 @@ using UnityEngine.UI;
 
 public class SkillSlotUI : MonoBehaviour
 {
-  public Image iconImage;
-  public Image cooldownOverlay; // fillAmount로 쿨타임 표시
-  public Text cooldownText;
+  public static SkillSlotUI Instance;
+  public Image elecKIcon;
+  public Image iceKIcon;
 
-  private float cooldownTime;
-  private float cooldownRemaining;
+  float elecCool = 0f;
+  float iceCool = 0f;
+  float elecDuration = 0f;
+  float iceDuration = 0f;
 
-  private bool isOnCooldown = false;
-
-  public void Initialize(Sprite icon, float cooldown)
+  void Awake()
   {
-    iconImage.sprite = icon;
-    cooldownTime = cooldown;
-    cooldownRemaining = 0;
-    cooldownOverlay.fillAmount = 0;
-    cooldownText.text = "";
-  }
-
-  public void StartCooldown()
-  {
-    cooldownRemaining = cooldownTime;
-    isOnCooldown = true;
+    if (Instance == null) Instance = this;
   }
 
   void Update()
   {
-    if (isOnCooldown)
+    if (elecCool > 0f)
     {
-      cooldownRemaining -= Time.deltaTime;
-      if (cooldownRemaining <= 0f)
-      {
-        cooldownRemaining = 0f;
-        isOnCooldown = false;
-      }
-
-      cooldownOverlay.fillAmount = cooldownRemaining / cooldownTime;
-      cooldownText.text = Mathf.CeilToInt(cooldownRemaining).ToString();
+      elecCool -= Time.deltaTime;
+      elecKIcon.fillAmount = elecCool / elecDuration;
+      if (elecCool <= 0f) { elecKIcon.fillAmount = 0f; }
     }
-    else
+    if (iceCool > 0f)
     {
-      cooldownOverlay.fillAmount = 0f;
-      cooldownText.text = "";
+      iceCool -= Time.deltaTime;
+      iceKIcon.fillAmount = iceCool / iceDuration;
+      if (iceCool <= 0f) { iceKIcon.fillAmount = 0f; }
     }
   }
 
-  public bool IsUsable()
+  public void ElecCoolDown(float duration)
   {
-    return !isOnCooldown;
+    elecDuration = duration;
+    elecCool = duration;
+    elecKIcon.fillAmount = 1;
   }
+
+  public void IceCoolDown(float duraton)
+  {
+    iceDuration = duraton;
+    iceCool = duraton;
+    iceKIcon.fillAmount = 1;
+  }
+
 }

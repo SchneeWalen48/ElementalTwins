@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd1c015f41b2b04790a0d25dd10572d, type: 3}
+  m_Name: Dash
+  m_EditorClassIdentifier: 
+  skillType: 1
+  cooldown: 2
+  duration: 0.1
+  range: 2
+  dmgMultiplier: 2
+  projPrefab: {fileID: 3948011479570669682, guid: c5a9fbbb3231cda4c8706812f64d93ec, type: 3}
+  skillName: Dash
+  skillIcon: {fileID: 21300000, guid: 349c44b10314e99458970ad9557ffee2, type: 3}
+  skillPrefab: {fileID: 4781670963077993881, guid: 99225af24163c8f4cb97ff91e56f5afe, type: 3}

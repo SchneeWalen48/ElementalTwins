@@ -10,16 +10,15 @@ using UnityEditor;
 public class Player : MonoBehaviour
 {
   public Animator anim;
-  private Rigidbody2D rb;
+  protected Rigidbody2D rb;
   private SpriteRenderer sr;
 
   public float speed;
   private float currSpeed;
   public float debuffAmount;
   public float shotInterval;
-  public float skillCool = 2f;
-  private float skillTimer = 0f;
   public float jumpForce;
+  public float dmg;
   [Tooltip("0 < reduce speed < 1")]
   public float reduceSpeed;
 
@@ -29,7 +28,6 @@ public class Player : MonoBehaviour
   protected int lastDir = 1;
 
   public GameObject basicProjPrefab;
-  public GameObject skillPrefab;
   public float shotSpeed;
   public float shotLife;
 
@@ -73,7 +71,6 @@ public class Player : MonoBehaviour
     if (!isControlled) return;
     Move();
     KeyInputControl();
-    CoolTimerUpdate();
 
     if(levInteractTimer > 0)
     {
@@ -211,11 +208,6 @@ public class Player : MonoBehaviour
     {
       BasicAtck();
     }
-    if (Input.GetKeyDown(KeyCode.K) && skillTimer <= 0f)
-    {
-      Skill();
-      skillTimer = skillCool;
-    }
     if (Input.GetKeyDown(KeyCode.O)) 
     {
       if (levInteractTimer <= 0f)
@@ -320,19 +312,12 @@ public class Player : MonoBehaviour
     if (currSpeed < 0f) { currSpeed = 0.5f; }
     StartCoroutine(RemoveDebuff(amount, 1.5f));
   }
-  void CoolTimerUpdate()
-  {
-    if (skillTimer > 0) skillTimer -= Time.deltaTime;
-  }
   protected virtual void BasicAtck()
   {
     anim.SetTrigger("shot");
   }
 
-  private void Skill()
-  {
-    Instantiate(skillPrefab, shotPoint.position, Quaternion.identity);
-  }
+  protected virtual void Skill1() { }
 
   public void ApplyKnockback(Vector2 dir, float force)
   {
