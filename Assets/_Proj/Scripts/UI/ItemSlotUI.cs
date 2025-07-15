@@ -20,24 +20,29 @@ public class ItemSlotUI : MonoBehaviour
 
   public void UpdateUI(Player p)
   {
-    if (p.HasItem(ItemType.PowerCore))
+    if (p.myAssignedItemType == ItemType.PowerCore)
     {
-      powercoreIcon.sprite = pcActiveSprite;
-      powercoreIcon.color = Color.white;
+      if (p.HasItem(ItemType.PowerCore))
+      {
+        powercoreIcon.sprite = pcActiveSprite;
+        powercoreIcon.color = Color.white;
+      }
+      else
+      {
+        powercoreIcon.sprite = null;
+      }
     }
-    else
+    if (p.myAssignedItemType == ItemType.CoolCore)
     {
-      powercoreIcon.sprite = null;
-    }
-
-    if (p.HasItem(ItemType.CoolCore))
-    {
-      coolcoreIcon.sprite = ccActiveSprite;
-      coolcoreIcon.color = Color.white;
-    }
-    else
-    {
-      coolcoreIcon.sprite= null;
+      if (p.HasItem(ItemType.CoolCore))
+      {
+        coolcoreIcon.sprite = ccActiveSprite;
+        coolcoreIcon.color = Color.white;
+      }
+      else
+      {
+        coolcoreIcon.sprite = null;
+      }
     }
   }
 
