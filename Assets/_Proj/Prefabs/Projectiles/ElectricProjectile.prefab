@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41515b5404b2d74786eb365754933c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 1
+  dmg: 20
   speed: 10
   lifeTime: 2
   srProjE: {fileID: 4064256310247466013}

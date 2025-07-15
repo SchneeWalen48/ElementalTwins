@@ -72,8 +72,7 @@ public class EnemyAttacker : Enemy
     if (currHp <= 0)
     {
       anim.SetTrigger("die");
-      Die();
-      Invoke(nameof(Die), 0.5f);
+      Invoke(nameof(Die), 1f);
     }
   }
 

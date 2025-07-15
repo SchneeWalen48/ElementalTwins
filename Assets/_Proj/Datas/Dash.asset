@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: 
   skillType: 1
-  cooldown: 2
+  cooldown: 5
   duration: 0.1
-  range: 2
+  range: 20
   dmgMultiplier: 2
   projPrefab: {fileID: 3948011479570669682, guid: c5a9fbbb3231cda4c8706812f64d93ec, type: 3}
   skillName: Dash
   skillIcon: {fileID: 21300000, guid: 349c44b10314e99458970ad9557ffee2, type: 3}
-  skillPrefab: {fileID: 4781670963077993881, guid: 99225af24163c8f4cb97ff91e56f5afe, type: 3}

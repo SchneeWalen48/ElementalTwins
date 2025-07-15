@@ -20,7 +20,6 @@ public class PControllerIce : Player
     base.KeyInputControl();
     if (Input.GetKeyDown(KeyCode.K) && freezeCoolTimer <= 0f)
     {
-      Debug.Log("KKK");
       Skill1();
       freezeCoolTimer = freezeData.cooldown;
     }
@@ -52,13 +51,12 @@ public class PControllerIce : Player
   protected override void Skill1()
   {
     if (freezeCoolTimer > 0f) return;
-    if (freezeData.projPrefab == null || freezeData == null || shotPoint == null) { Debug.Log("데이어 빔"); return; }
+    if (freezeData.projPrefab == null || freezeData == null || shotPoint == null) { return; }
 
     GameObject proj = Instantiate(freezeData.projPrefab, shotPoint.position, Quaternion.identity);
     FreezeProj fp = proj.GetComponent<FreezeProj>();
     if( fp == null)
     {
-      print("컴포넌트 누락");
       return;
     }
     Vector2 dir = lastDir > 0? Vector2.right : Vector2.left;

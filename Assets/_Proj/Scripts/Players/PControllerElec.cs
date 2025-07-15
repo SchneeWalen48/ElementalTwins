@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Data;
 using UnityEngine;
 
 public class PControllerElec : Player
@@ -59,6 +58,7 @@ public class PControllerElec : Player
     if (dashCoolTimer > 0f || isDashing) return;
     StartCoroutine(Dash());
     dashCoolTimer = dashData.cooldown;
+    SkillSlotUI.Instance.ElecCoolDown(dashData.cooldown);
   }
 
   IEnumerator Dash()

@@ -8,10 +8,12 @@ public class PlatformBlock : MonoBehaviour, IInteractables
   public float resetDelay = 3.0f;
   public float delayTimer = 0.4f;
 
+  private bool isMoving = false;
   public MoveDirection moveDir = MoveDirection.Up;
 
   public enum MoveDirection { Up, Down, Left, Right }
 
+  public ButtonBuzzer buzzer;
   private Vector3 originalPos;
   private Coroutine currMoveCoroutine;
 
@@ -22,7 +24,8 @@ public class PlatformBlock : MonoBehaviour, IInteractables
 
   public void TriggerAction()
   {
-    Debug.Log("Platform Triggered!");
+    if (isMoving) return;
+    
     if (currMoveCoroutine != null)
     {
       StopCoroutine(currMoveCoroutine);
@@ -32,6 +35,12 @@ public class PlatformBlock : MonoBehaviour, IInteractables
 
   public void ResetAction()
   {
+    if (isMoving) return;
+    bool blockReset = buzzer != null && buzzer.IsCurrPressed();
+    if(blockReset)
+    {
+      return;
+    }
     Debug.Log("Platform Resetting...");
     if (currMoveCoroutine != null)
     {
@@ -42,6 +51,7 @@ public class PlatformBlock : MonoBehaviour, IInteractables
 
   IEnumerator MovePlatform(bool isMovingToTarget)
   {
+    isMoving = true;
     yield return new WaitForSeconds(delayTimer);
     Vector3 startPos = transform.localPosition;
     Vector3 endPos;
@@ -70,7 +80,7 @@ public class PlatformBlock : MonoBehaviour, IInteractables
       yield return null;
     }
     transform.localPosition = endPos;
-
+    isMoving = false;
     if (isMovingToTarget)
     {
       yield return new WaitForSeconds(resetDelay);

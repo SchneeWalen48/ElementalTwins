@@ -7512,6 +7512,10 @@ PrefabInstance:
       value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
+      propertyPath: buzzer
+      value: 
+      objectReference: {fileID: 1780458372}
+    - target: {fileID: 8652613798206951422, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
       propertyPath: moveDir
       value: 3
       objectReference: {fileID: 0}
@@ -14371,6 +14375,17 @@ Transform:
   - {fileID: 1975970067}
   m_Father: {fileID: 1123958907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1780458372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4794458206742159526, guid: e89eefdc80208134192dfd649da979b2, type: 3}
+  m_PrefabInstance: {fileID: 1582357207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690942294138fae45bab80f0079bca8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1781625059
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,42 +25,9 @@ public class ButtonBuzzer : MonoBehaviour
     originScale = transform.localScale;
   }
 
-  void OnTriggerEnter2D(Collider2D other)
-  {
-    if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Props"))
-    {
-      if (!isPressed)
-      {
-        isPressed = true;
-        PressBtn();
-        foreach (GameObject target in targets)
-        {
-          if (target.TryGetComponent(out IInteractables interact))
-          {
-            interact.TriggerAction();
-          }
-        }
-      }
-    }
-  }
-  private void OnTriggerStay2D(Collider2D collision)
-  {
-    if (!isPressed)
-    {
-      if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Props"))
-      {
-        isPressed = true;
-        PressBtn();
-        foreach (GameObject target in targets)
-        {
-          if (target.TryGetComponent(out IInteractables interact))
-          {
-            interact.TriggerAction();
-          }
-        }
-      }
-    }
-  }
+  void OnTriggerEnter2D(Collider2D other)=>TryPress(other);
+  private void OnTriggerStay2D(Collider2D other) => TryPress(other);
+  
   void OnTriggerExit2D(Collider2D other)
   {
     if (!gameObject.activeInHierarchy) return;
@@ -72,6 +39,24 @@ public class ButtonBuzzer : MonoBehaviour
         ReleaseBtn();
 
         StartCoroutine(DelayedPlatformReset());
+      }
+    }
+  }
+  void TryPress(Collider2D other)
+  {
+    if (!isPressed)
+    {
+      if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Props"))
+      {
+        isPressed = true;
+        PressBtn();
+        foreach (GameObject target in targets)
+        {
+          if (target.TryGetComponent(out IInteractables interact))
+          {
+            interact.TriggerAction();
+          }
+        }
       }
     }
   }
