@@ -54,7 +54,7 @@ public class Generator : MonoBehaviour
       iceItemRegistered = true;
       p.RemoveItem(type);
       Debug.Log($"{type} assigned");
-      visualI = ShowVisual(itemDisplay_I, iceVisualPrefab);
+      ItemSlotUI.Instance?.MarkItemUsed(type);
     }
     else if(type == elecItem && !elecItemRegistered)
     {
@@ -66,7 +66,7 @@ public class Generator : MonoBehaviour
       elecItemRegistered = true;
       p.RemoveItem(type);
       Debug.Log($"{type} assigned");
-      visualE = ShowVisual(itemDisplay_E, elecVisualPrefab);
+      ItemSlotUI.Instance?.MarkItemUsed(type);
     }
     else
     {

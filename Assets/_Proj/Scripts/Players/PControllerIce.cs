@@ -66,5 +66,6 @@ public class PControllerIce : Player
     fp.duration = freezeData.duration;
 
     freezeCoolTimer = freezeData.cooldown;
+    SkillSlotUI.Instance.IceCoolDown(freezeData.cooldown);
   }
 }

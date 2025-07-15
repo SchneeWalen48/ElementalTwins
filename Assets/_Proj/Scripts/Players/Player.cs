@@ -347,6 +347,7 @@ public class Player : MonoBehaviour
     if (collectedItem.ContainsKey(type))
     {
       collectedItem[type] = true;
+      ItemSlotUI.Instance?.UpdateUI(this);
     }
   }
 
