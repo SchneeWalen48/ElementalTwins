@@ -23,4 +23,10 @@ public class VCamX : MonoBehaviour
       camTransform.position = pos;
     }
   }
+  private void OnDestroy()
+  {
+    string msg = $"[VCamX] !!!!! {gameObject.name} (Virtual Camera) 오브젝트가 파괴되었습니다 !!!!!";
+    // 이 한 줄을 추가하여 누가 Destroy를 호출했는지 스택 트레이스를 얻습니다.
+    Debug.LogException(new System.Exception(msg), this);
+  }
 }

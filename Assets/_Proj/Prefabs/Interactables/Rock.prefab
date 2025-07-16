@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1848017894077537908}
   - component: {fileID: 208195674365577424}
-  - component: {fileID: 6504191237492101928}
   m_Layer: 11
   m_Name: RockChild
   m_TagString: Props
@@ -78,18 +77,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.45, y: 1.45}
   m_EdgeRadius: 0
---- !u!114 &6504191237492101928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439562859875687130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d274fe8fa4b777b4bbc0a8a86dbf7430, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3739517764088993721
 GameObject:
   m_ObjectHideFlags: 0

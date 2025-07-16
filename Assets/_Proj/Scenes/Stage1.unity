@@ -7899,7 +7899,7 @@ MonoBehaviour:
   speed: 3
   debuffAmount: 1
   shotInterval: 0
-  jumpForce: 5
+  jumpForce: 8
   dmg: 20
   reduceSpeed: 0.8
   isGrounded: 1
@@ -9141,7 +9141,6 @@ GameObject:
   - component: {fileID: 620115811}
   - component: {fileID: 620115810}
   - component: {fileID: 620115809}
-  - component: {fileID: 620115808}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -9149,24 +9148,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &620115808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620115807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54e9a99e0f9e24d46893bf5e9845658e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ElecBoy: {fileID: 1266295123}
-  IceBoy: {fileID: 281626742}
-  vCam: {fileID: 620115810}
-  camFollowTarget1: {fileID: 1436359613}
-  camFollowTarget2: {fileID: 1745996958}
-  cameraZoneH: 18
 --- !u!114 &620115809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13690,7 +13671,7 @@ MonoBehaviour:
   speed: 4
   debuffAmount: 1
   shotInterval: 0
-  jumpForce: 5
+  jumpForce: 6
   dmg: 20
   reduceSpeed: 0.8
   isGrounded: 1
@@ -13922,7 +13903,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6504191237492101928, guid: a7ed66c5afd6ac14eae8a95b5049485c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
