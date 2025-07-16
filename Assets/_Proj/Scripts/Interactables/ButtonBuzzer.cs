@@ -18,6 +18,7 @@ public class ButtonBuzzer : MonoBehaviour
   private Vector3 originScale;
   private bool isPressed = false;
   private Coroutine currPressCoroutine;
+  private Coroutine currResetCoroutine;
 
   private int pressingObjCnt = 0;
 
@@ -32,12 +33,16 @@ public class ButtonBuzzer : MonoBehaviour
     if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Props"))
     {
       pressingObjCnt++;
-      Debug.Log($"[Buzzer] OnTriggerEnter2D: {other.gameObject.name} 진입. 현재 pressingObjectCount: {pressingObjCnt}, isPressed: {isPressed}");
       if (pressingObjCnt == 1)
       {
         isPressed = true;
         PressBtn();
 
+        if(currResetCoroutine != null)
+        {
+          StopCoroutine(currResetCoroutine);
+          currResetCoroutine = null;
+        }
         foreach (GameObject target in targets)
         {
           if (target.TryGetComponent(out IInteractables interact))
@@ -57,7 +62,6 @@ public class ButtonBuzzer : MonoBehaviour
     {
       pressingObjCnt--;
       if (pressingObjCnt < 0) pressingObjCnt = 0;
-      Debug.Log($"[Buzzer] OnTriggerExit2D: {other.gameObject.name} 이탈. 현재 pressingObjectCount: {pressingObjCnt}, isPressed: {isPressed}");
       if (pressingObjCnt == 0)
       {
         isPressed = false;
@@ -105,11 +109,16 @@ public class ButtonBuzzer : MonoBehaviour
       StopCoroutine(currPressCoroutine);
     }
     currPressCoroutine = StartCoroutine(MoveBuzzer(originPos, originScale, resetDuration));
+
+    if(currResetCoroutine != null)
+    {
+      StopCoroutine(currResetCoroutine);
+    }
+    currResetCoroutine = StartCoroutine(DelayedPlatformReset());
   }
   IEnumerator DelayedPlatformReset()
   {
     yield return new WaitForSeconds(platformResetDelay);
-    Debug.Log($"[Buzzer] DelayedPlatformReset 실행 완료 후 확인. isPressed: {isPressed}. 플랫폼 리셋 시도 중.");
     if (isPressed)
     {
       Debug.Log("[Buzzer] DelayedPlatformReset: 버튼이 눌려있으므로 플랫폼 리셋을 막습니다."); yield break;
@@ -121,6 +130,7 @@ public class ButtonBuzzer : MonoBehaviour
         interact.ResetAction();
       }
     }
+    currResetCoroutine = null;
   }
 
   public bool IsCurrPressed()
