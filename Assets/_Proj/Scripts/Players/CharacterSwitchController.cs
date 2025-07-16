@@ -68,6 +68,10 @@ public class CharacterSwitchController : MonoBehaviour
     PlayerManager.ActivatePlayerTrans = ElecBoy.transform;
 
     SetCamFollowTarget(ElecBoy.transform);
+
+
+    Player currPlayer = isPlayer1Active ? ElecBoy : IceBoy;
+    FindObjectOfType<ActivePlayerUI>()?.UpdateIcon(currPlayer);
   }
 
   void Update()
@@ -105,7 +109,7 @@ public class CharacterSwitchController : MonoBehaviour
     isPlayer1Active = !isPlayer1Active;
 
     SetCamFollowTarget(nextPlayer.transform);
-
+    FindObjectOfType<ActivePlayerUI>()?.UpdateIcon(nextPlayer);
     PlayerManager.ActivatePlayerTrans = nextPlayer.transform;
   }
 
