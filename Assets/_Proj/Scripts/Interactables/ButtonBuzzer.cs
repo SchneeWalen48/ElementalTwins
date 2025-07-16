@@ -19,21 +19,46 @@ public class ButtonBuzzer : MonoBehaviour
   private bool isPressed = false;
   private Coroutine currPressCoroutine;
 
+  private int pressingObjCnt = 0;
+
   void Awake()
   {
     originPos = transform.localPosition;
     originScale = transform.localScale;
   }
 
-  void OnTriggerEnter2D(Collider2D other)=>TryPress(other);
-  private void OnTriggerStay2D(Collider2D other) => TryPress(other);
+  void OnTriggerEnter2D(Collider2D other)
+  {
+    if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Props"))
+    {
+      pressingObjCnt++;
+      Debug.Log($"[Buzzer] OnTriggerEnter2D: {other.gameObject.name} 진입. 현재 pressingObjectCount: {pressingObjCnt}, isPressed: {isPressed}");
+      if (pressingObjCnt == 1)
+      {
+        isPressed = true;
+        PressBtn();
+
+        foreach (GameObject target in targets)
+        {
+          if (target.TryGetComponent(out IInteractables interact))
+          {
+            interact.TriggerAction();
+          }
+        }
+      }
+    }
+  }
+  //private void OnTriggerStay2D(Collider2D other) => TryPress(other);
   
   void OnTriggerExit2D(Collider2D other)
   {
     if (!gameObject.activeInHierarchy) return;
     if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Props"))
     {
-      if (isPressed)
+      pressingObjCnt--;
+      if (pressingObjCnt < 0) pressingObjCnt = 0;
+      Debug.Log($"[Buzzer] OnTriggerExit2D: {other.gameObject.name} 이탈. 현재 pressingObjectCount: {pressingObjCnt}, isPressed: {isPressed}");
+      if (pressingObjCnt == 0)
       {
         isPressed = false;
         ReleaseBtn();
@@ -84,6 +109,11 @@ public class ButtonBuzzer : MonoBehaviour
   IEnumerator DelayedPlatformReset()
   {
     yield return new WaitForSeconds(platformResetDelay);
+    Debug.Log($"[Buzzer] DelayedPlatformReset 실행 완료 후 확인. isPressed: {isPressed}. 플랫폼 리셋 시도 중.");
+    if (isPressed)
+    {
+      Debug.Log("[Buzzer] DelayedPlatformReset: 버튼이 눌려있으므로 플랫폼 리셋을 막습니다."); yield break;
+    }
     foreach (GameObject target in targets)
     {
       if (target.TryGetComponent(out IInteractables interact))
