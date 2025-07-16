@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trapType: 1
-  trapEffect: {fileID: 0}
 --- !u!61 &7296360749282331610
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -92,7 +91,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.66, y: 0.54}
   m_EdgeRadius: 0
 --- !u!95 &1415380900911832531
 Animator:

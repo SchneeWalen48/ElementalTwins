@@ -41,7 +41,8 @@ public class Player : MonoBehaviour
   public float levInterRange = 1f;
   public LayerMask itemLayer;
 
-  public Transform respawnPoint;
+  public Transform respawnPoint1;
+  public Transform respawnPoint2;
 
   private Dictionary<ItemType, bool> collectedItem = new Dictionary<ItemType, bool>();
 
@@ -288,10 +289,22 @@ public class Player : MonoBehaviour
   public void Respawn()
   {
     Debug.Log("Respawn!");
-    transform.position = respawnPoint.position;
-    rb.velocity = Vector2.zero;
+    //transform.position = respawnPoint1.position;
 
-    if(anim != null)
+    float y = transform.position.y;
+    float midPointY = 9f;
+
+    if (y < midPointY && respawnPoint1 != null)
+    {
+      transform.position = respawnPoint1.position;
+    }
+    else if(respawnPoint2 != null)
+    {
+      transform.position = respawnPoint2.position;
+    }
+
+    rb.velocity = Vector2.zero;
+    if (anim != null)
     {
       anim.enabled = true;
       anim.Rebind();

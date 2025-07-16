@@ -10,7 +10,7 @@ public class TeleportPortal : MonoBehaviour
 
   void OnTriggerEnter2D(Collider2D coll)
   {
-    if(coll.CompareTag("Player") && linkedPortal != null && !isTeleporting)
+    if((coll.CompareTag("Player") || (coll.CompareTag("Props"))) && linkedPortal != null && !isTeleporting)
     {
       StartCoroutine(Teleport(coll.transform));
     }
@@ -25,6 +25,8 @@ public class TeleportPortal : MonoBehaviour
       linkedScript.isTeleporting = true;
     }
     p.transform.position = linkedPortal.position;
+    if(CharacterSwitchController.Instance != null)
+      CharacterSwitchController.Instance.NotifyPlayerTeleported();
     yield return new WaitForSeconds(0.5f);
     isTeleporting = false;
     if(linkedScript != null)

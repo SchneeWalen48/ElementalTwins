@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using System.Xml;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -27,32 +28,46 @@ public class CharacterSwitchController : MonoBehaviour
   public Player IceBoy;
   public CinemachineVirtualCamera vCam;
 
+  public Transform camFollowTarget1; // zone1 position target
+  public Transform camFollowTarget2; // zone2 position target
+
+  public float cameraZoneH = 9*2f; // orthographic size = 9
+
   private GameObject currActivePlayer;
   private CinemachineFramingTransposer transposer;
 
   private bool isPlayer1Active = true;
 
-  private float originYDamping;
-  private float originYDeadZoneHeight;
-  private float originScreenY;
+  public static CharacterSwitchController Instance { get; private set; }
+
+  void Awake()
+  {
+    if(Instance == null)
+      Instance = this;
+    else
+      Destroy(gameObject);
+  }
 
   void Start()
   {
     ElecBoy.isControlled = true;
     IceBoy.isControlled = false;
 
-    vCam.Follow = ElecBoy.transform;
     transposer = vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
 
-    originYDamping =transposer.m_YDamping;
-    originYDeadZoneHeight = transposer.m_DeadZoneHeight;
-    originScreenY = transposer.m_ScreenY;
+    transposer.m_XDamping = 1000f;
+    transposer.m_DeadZoneWidth = 1000f;
+    transposer.m_ScreenX = 0.5f;
+
+    transposer.m_YDamping = 0f;
 
     ElecBoy.gameObject.layer = LayerMask.NameToLayer("PlayerActive");
     IceBoy.gameObject.layer = LayerMask.NameToLayer("PlayerInactive");
     currActivePlayer = ElecBoy.gameObject;
 
     PlayerManager.ActivatePlayerTrans = ElecBoy.transform;
+
+    SetCamFollowTarget(ElecBoy.transform);
   }
 
   void Update()
@@ -89,43 +104,38 @@ public class CharacterSwitchController : MonoBehaviour
     // Transfer character status flag
     isPlayer1Active = !isPlayer1Active;
 
-    ForceCamToNewPlayerPos(nextPlayer.transform);
+    SetCamFollowTarget(nextPlayer.transform);
 
     PlayerManager.ActivatePlayerTrans = nextPlayer.transform;
   }
 
-  void ForceCamToNewPlayerPos(Transform targetTransform)
+  private void SetCamFollowTarget(Transform playerTrans)
   {
-    Player currPlayer = isPlayer1Active ? ElecBoy : IceBoy;
-    Player nextPlayer = isPlayer1Active ? IceBoy : ElecBoy;
+    // where is player(zone)
+    int zoneIndex = Mathf.FloorToInt(playerTrans.position.y);
+    // middle of the zone
+    float targetCamY = zoneIndex * cameraZoneH + (cameraZoneH / 2f);
 
-    if (transposer != null)
+    float midPointY = cameraZoneH / 2f; // 1920*1080 y unit = 18 18/2=9
+    if (playerTrans.position.y < midPointY)
     {
-      transposer.m_YDamping = 0.3f;
-      transposer.m_DeadZoneHeight = 0.2f;
-      //transposer.m_ScreenY = 0.97f;
-      float yDiff = currPlayer.transform.position.y - nextPlayer.transform.position.y;
-
-      float thresholdMin = originScreenY - 0.5f;
-      float thresholdMax = originScreenY + 0.5f;
-      if(yDiff > thresholdMin)
+      if (camFollowTarget1 != null)
       {
-        float t = Mathf.InverseLerp(thresholdMin, thresholdMax, yDiff);
-        float boostedY = Mathf.Lerp(originScreenY, 1f - originYDeadZoneHeight, t);
-        transposer.m_ScreenY = boostedY;
-        Invoke("RestoreCamYSetting", 0f);
+        vCam.Follow = camFollowTarget1;
       }
-      Invoke("RestoreCamYSetting", 1f);
+    }
+    else
+    {
+      if (camFollowTarget2 != null)
+      {
+        vCam.Follow = camFollowTarget2;
+      }
     }
   }
 
-  void RestoreCamYSetting()
+  public void NotifyPlayerTeleported()
   {
-    if(transposer != null)
-    {
-      transposer.m_YDamping = originYDamping;
-      transposer.m_DeadZoneHeight = originYDeadZoneHeight;
-      transposer.m_ScreenY = originScreenY;
-    }
+    if(PlayerManager.ActivatePlayerTrans != null)
+      SetCamFollowTarget(PlayerManager.ActivatePlayerTrans);
   }
 }

@@ -5,8 +5,9 @@ public class Portal : MonoBehaviour
   {
     if (collision.CompareTag("Player"))
     {
-      float time = Time.timeSinceLevelLoad;
+      float time = FindObjectOfType<GameTimerUI>().GetTime();
       StageClearUI.Instance.ShowClearUI(time);
+      FindObjectOfType<GameTimerUI>().StopTimer();
     }
   }
 }

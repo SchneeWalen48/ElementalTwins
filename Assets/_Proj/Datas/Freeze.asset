@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 1
   cooldown: 2
-  duration: 2
+  duration: 3.5
   range: 3
   dmgMultiplier: 2
   projPrefab: {fileID: 1299842720396327492, guid: 11bff00a8760d53429ebcbffd6c0e346, type: 3}

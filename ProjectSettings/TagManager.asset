@@ -15,6 +15,7 @@ TagManager:
   - ObstaclesAndController
   - Portal
   - EProj
+  - Teleport
   layers:
   - Default
   - TransparentFX
