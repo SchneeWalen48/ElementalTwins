@@ -32,7 +32,7 @@ public class StageClearUI : MonoBehaviour
     int sec = (int)(clearTime % 60);
     timeTxt.text = $"{min:00}:{sec:00}";
 
-    int starCnt = clearTime < 420f ? 3 : (clearTime < 510f ? 2 : 1);
+    int starCnt = clearTime < 350f ? 3 : (clearTime < 450f ? 2 : 1);
     for (int i = 0; i < stars.Length; i++)
     {
       stars[i].SetActive(i < starCnt);
