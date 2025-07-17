@@ -172,7 +172,13 @@ public class Player : MonoBehaviour
       }
     }
   }
-
+  protected virtual void OnTriggerEnter2D(Collider2D collision)
+  {
+    if(collision.gameObject.layer == LayerMask.NameToLayer("PlayerBlock"))
+    {
+      rb.velocity = new Vector2(-1f, rb.velocity.y);
+    }
+  }
   IEnumerator SetParentDelay(Transform newP)
   {
     yield return null;

@@ -6,7 +6,7 @@ public class Rock : MonoBehaviour
   public float resetThresholdY = 5f;
 
   private Rigidbody2D rb;
-
+  public float bounceForce = 80f;
   void Start()
   {
     originalPos = transform.position;
@@ -32,5 +32,21 @@ public class Rock : MonoBehaviour
     transform.position = originalPos;
 
     Debug.Log("Rock Reset!");
+  }
+
+  private void OnCollisionEnter2D(Collision2D collision)
+  {
+    if (collision.gameObject.CompareTag("Wall"))
+    {
+      Vector2 currDir = rb.velocity.normalized;
+      if (currDir == Vector2.zero)
+      {
+        currDir = -collision.contacts[0].normal;
+      }
+
+      Vector2 oppDir = -currDir;
+        rb.AddForce(oppDir * bounceForce, ForceMode2D.Impulse);
+
+    }
   }
 }
