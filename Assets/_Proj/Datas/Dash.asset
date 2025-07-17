@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd1c015f41b2b04790a0d25dd10572d, type: 3}
   m_Name: Dash
   m_EditorClassIdentifier: 
-  skillType: 1
-  cooldown: 5
+  skillType: 0
+  cooldown: 3
   duration: 0.1
-  range: 20
+  range: 3
   dmgMultiplier: 2
   projPrefab: {fileID: 3948011479570669682, guid: c5a9fbbb3231cda4c8706812f64d93ec, type: 3}
   skillName: Dash

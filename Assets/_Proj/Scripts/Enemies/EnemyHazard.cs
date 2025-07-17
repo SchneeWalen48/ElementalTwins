@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-using Unity.PlasticSCM.Editor.WebApi;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyHazard : Enemy
 {

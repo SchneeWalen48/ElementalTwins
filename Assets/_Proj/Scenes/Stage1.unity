@@ -7569,7 +7569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1440726196355868068, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.58
+      value: -1.68
       objectReference: {fileID: 0}
     - target: {fileID: 1440726196355868068, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7609,7 +7609,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: chaseSpeed
-      value: 7
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
+      propertyPath: patrolSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: detectRangeX
@@ -14059,6 +14063,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
+      propertyPath: chaseSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
+      propertyPath: patrolSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: detectRangeY
       value: 4
       objectReference: {fileID: 0}
@@ -14352,8 +14364,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
+      propertyPath: chaseSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: patrolSpeed
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: detectRangeX
@@ -25408,11 +25424,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: chaseSpeed
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: patrolSpeed
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: detectRangeX
@@ -28006,6 +28022,14 @@ PrefabInstance:
     - target: {fileID: 1440726196355868068, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
+      propertyPath: chaseSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
+      propertyPath: patrolSpeed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: playerTarget

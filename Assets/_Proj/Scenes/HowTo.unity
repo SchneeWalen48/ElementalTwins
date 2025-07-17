@@ -15971,6 +15971,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
+      propertyPath: chaseSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
+      propertyPath: patrolSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730494478613736195, guid: 93f98fcb8b529864db114c257ae406a1, type: 3}
       propertyPath: detectRangeX
       value: 10
       objectReference: {fileID: 0}
