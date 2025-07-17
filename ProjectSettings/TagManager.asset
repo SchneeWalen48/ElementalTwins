@@ -16,6 +16,7 @@ TagManager:
   - Portal
   - EProj
   - Teleport
+  - Panel
   layers:
   - Default
   - TransparentFX

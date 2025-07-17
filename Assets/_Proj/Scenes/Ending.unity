@@ -3412,7 +3412,7 @@ GameObject:
   - component: {fileID: 1495833211}
   m_Layer: 5
   m_Name: CreditPanel
-  m_TagString: Untagged
+  m_TagString: Panel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3435,7 +3435,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 838, y: 484}
+  m_SizeDelta: {x: 1200, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1495833211
 CanvasRenderer:
@@ -3479,8 +3479,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -220, y: -40}
+  m_AnchoredPosition: {x: 5, y: 0}
+  m_SizeDelta: {x: -210, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1678877655
 MonoBehaviour:
@@ -3495,7 +3495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3503,25 +3503,25 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: d87c173f379cc614d94a6581306bc39f, type: 3}
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 100
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "-- Game Info --\r\n\r\nTitle : Elemental Twin : Trials of the temple\r\nGenre
+  m_Text: "== Game Info ==\n\r\nTitle : Elemental Twin : Trials of the temple\r\nGenre
     : 2D Puzzle Action Platofromer\r\nDevelopment Period : July 2025\r\n\r\nThis
     porject started with a simple diea:\r\nThis game was created with \"Fireboy and
     Watergirl\" as its motif.\n\nEverthing form the level design to the sound effects
     was built with care, with the hope that players would enjoy a short but meaningful
     adventrue.\r\n\r\nThank you for playing!\r\n\n\rGame Design / Promgramming /
-    Art / Sound : devschnee\nGame Engine : Unity 2022\r.3\nPixel ARt Tools : Aseprite,
+    Art / Sound : devschnee\nGame Engine : Unity 2022\r.3\nPixel Art Tools : Aseprite,
     Piskel\r\nSound & Music : Garageband\r\nFont : Galmuri Typeface (SIL Open Font
     License)\r\n\r\n=================================\n\r\n\uC81C\uBAA9 : Element
     Twins : \uC0AC\uC6D0\uC758 \uC2DC\uB828\r\n\uC7A5\uB974 : 2D \uD37C\uC990 \uC561\uC158
@@ -3574,8 +3574,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -503}
-  m_SizeDelta: {x: 838, y: 1500}
+  m_AnchoredPosition: {x: 0, y: -1256}
+  m_SizeDelta: {x: 1200, y: 3300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1867514428
 MonoBehaviour:
@@ -3590,8 +3590,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 1867514427}
-  scrollSpeed: 50
-  endDelay: 2
+  scrollSpeed: 150
+  endDelay: 1
   nextSceneName: Title
   fadeGroup: {fileID: 933251707}
 --- !u!114 &1867514429

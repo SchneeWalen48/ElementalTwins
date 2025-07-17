@@ -915,7 +915,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "K\uB97C \uB20C\uB7EC \uC801\uC744 \uC5BC\uB9AC\uC138\uC694"
+  m_text: "(K)\uC801\uC744 \uC5BC\uB9AC\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b4c7c659294c054795154baeba0afc2, type: 2}
   m_sharedMaterial: {fileID: 5411664847905220942, guid: 6b4c7c659294c054795154baeba0afc2, type: 2}
@@ -3105,7 +3105,7 @@ Transform:
   m_GameObject: {fileID: 281626738}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.6, y: -7.4, z: 0}
+  m_LocalPosition: {x: -12.6, y: -7.18, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -5082,6 +5082,7 @@ MonoBehaviour:
   pause: {fileID: 797820396}
   pauseImg: {fileID: 1794197847}
   playImg: {fileID: 1524065741}
+  restartBtn: {fileID: 0}
 --- !u!1001 &816665521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5873,8 +5874,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "K\uB97C \uB20C\uB7EC Dash\n\uB545\uC5D0 \uB2FF\uC73C\uBA74 \uC804\uAE30\uAC00
-    \n\uC0AC\uB77C\uC838\uC694(\uB9AC\uC2A4\uD3F0)"
+  m_text: "(K) Dash\n\uB545\uC5D0 \uB2FF\uC73C\uBA74 \uC804\uAE30\uAC00 \n\uC0AC\uB77C\uC838\uC694(\uB9AC\uC2A4\uD3F0)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b4c7c659294c054795154baeba0afc2, type: 2}
   m_sharedMaterial: {fileID: 5411664847905220942, guid: 6b4c7c659294c054795154baeba0afc2, type: 2}
@@ -6287,8 +6287,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "O\uBC84\uD2BC\uC73C\uB85C \uAC01\uC790 \n\uC18D\uC131\uC5D0 \uB9DE\uB294\n\uC544\uC774\uD15C\uC744
-    \uD68D\uB4DD\uD558\uC138\uC694"
+  m_text: "(O)\uC18D\uC131\uC5D0 \uB9DE\uB294\n\uC544\uC774\uD15C\uC744 \uD68D\uB4DD\uD558\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b4c7c659294c054795154baeba0afc2, type: 2}
   m_sharedMaterial: {fileID: 5411664847905220942, guid: 6b4c7c659294c054795154baeba0afc2, type: 2}
@@ -7481,7 +7480,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB808\uBC84\uB97C \uB2F9\uAE30\uBA74\n\uD50C\uB7AB\uD3FC\uC774 \uC774\uB3D9\uD569\uB2C8\uB2E4"
+  m_text: "(O) \uB808\uBC84\uB97C \uB2F9\uAE30\uBA74\n\uD50C\uB7AB\uD3FC\uC774 \uC774\uB3D9\uD569\uB2C8\uB2E4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b4c7c659294c054795154baeba0afc2, type: 2}
   m_sharedMaterial: {fileID: 5411664847905220942, guid: 6b4c7c659294c054795154baeba0afc2, type: 2}
@@ -7851,7 +7850,7 @@ Transform:
   m_GameObject: {fileID: 1266295119}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.4, y: 1.16, z: 0}
+  m_LocalPosition: {x: 13.59, y: 1.16, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -12904,33 +12903,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1586605624}
-  - component: {fileID: 1586605623}
+  - component: {fileID: 1586605625}
   m_Layer: 0
-  m_Name: StageClearUIController
+  m_Name: TutorialClearUIController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1586605623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586605622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e354cab08aab193499973a7585bbd283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 1781625059}
-  timeTxt: {fileID: 0}
-  stars:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  nextBtn: {fileID: 1534344879}
 --- !u!4 &1586605624
 Transform:
   m_ObjectHideFlags: 0
@@ -12946,6 +12926,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1586605625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586605622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c2a5ae8782b15499791ed4286e2296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 1781625059}
+  startBtn: {fileID: 1534344879}
 --- !u!1 &1607285080 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3936066468369659382, guid: cc7b2c7d40b53584ab1bef06f03a151e, type: 3}
@@ -13088,7 +13082,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "O\uC544\uC774\uD15C\uC744 \uB4F1\uB85D\uD558\uACE0\n\uBC1C\uC804\uAE30\uB97C
+  m_text: "(O)\uC544\uC774\uD15C\uC744 \uB4F1\uB85D\uD558\uACE0\n\uBC1C\uC804\uAE30\uB97C
     \uC791\uB3D9\uC2DC\uD0A4\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b4c7c659294c054795154baeba0afc2, type: 2}
@@ -13389,7 +13383,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "J\uB97C \uB20C\uB7EC \uC77C\uBC18 \uACF5\uACA9\uC744 \uD574\uBCF4\uC138\uC694"
+  m_text: "(J)\uC77C\uBC18 \uACF5\uACA9\uC744 \uD574\uBCF4\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b4c7c659294c054795154baeba0afc2, type: 2}
   m_sharedMaterial: {fileID: 5411664847905220942, guid: 6b4c7c659294c054795154baeba0afc2, type: 2}
@@ -13911,7 +13905,7 @@ GameObject:
   - component: {fileID: 1781625061}
   m_Layer: 5
   m_Name: StageClearPanel
-  m_TagString: Untagged
+  m_TagString: Panel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

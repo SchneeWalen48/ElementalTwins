@@ -2,16 +2,11 @@
 
 public class HowToPortal : MonoBehaviour
 {
-  private GameObject clearPanel;
   private bool triggered = false;
 
   void Start()
   {
-    clearPanel = GameObject.Find("StageClearPanel");
-    if (clearPanel != null)
-      clearPanel.SetActive(false);
-    else
-      Debug.LogWarning("[HowToPortal] StageClearPanel not found in scene.");
+    if (TutorialClearUI.Instance == null) { Debug.Log("null"); }
   }
 
   private void OnTriggerEnter2D(Collider2D collision)
@@ -20,10 +15,11 @@ public class HowToPortal : MonoBehaviour
 
     if (collision.CompareTag("Player"))
     {
-      if (clearPanel != null)
+      if (TutorialClearUI.Instance != null)
       {
-        clearPanel.SetActive(true);
+        TutorialClearUI.Instance.ShowTutClearUI(0f);
         triggered = true;
+        
       }
     }
   }
