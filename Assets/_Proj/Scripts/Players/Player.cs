@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
 
   protected virtual void OnCollisionEnter2D(Collision2D collision)
   {
-    if (collision.gameObject.CompareTag("Ground"))
+    if (collision.gameObject.CompareTag("Ground")|| collision.gameObject.CompareTag("Props"))
     {
       isGrounded = true;
       anim.SetBool("isJump", false);
