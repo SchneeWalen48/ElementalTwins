@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetThresholdY: 5
+  bounceForce: 100
 --- !u!212 &815859549149863562
 SpriteRenderer:
   m_ObjectHideFlags: 0

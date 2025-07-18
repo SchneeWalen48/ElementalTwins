@@ -9493,7 +9493,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 134463008114122425, guid: a7ed66c5afd6ac14eae8a95b5049485c, type: 3}
       propertyPath: bounceForce
-      value: 100
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3739517764088993721, guid: a7ed66c5afd6ac14eae8a95b5049485c, type: 3}
       propertyPath: m_Name
@@ -14335,7 +14335,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 134463008114122425, guid: a7ed66c5afd6ac14eae8a95b5049485c, type: 3}
       propertyPath: bounceForce
-      value: 100
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3739517764088993721, guid: a7ed66c5afd6ac14eae8a95b5049485c, type: 3}
       propertyPath: m_Name
@@ -24915,7 +24915,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 134463008114122425, guid: a7ed66c5afd6ac14eae8a95b5049485c, type: 3}
       propertyPath: bounceForce
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3739517764088993721, guid: a7ed66c5afd6ac14eae8a95b5049485c, type: 3}
       propertyPath: m_Name
@@ -27067,7 +27067,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 134463008114122425, guid: a7ed66c5afd6ac14eae8a95b5049485c, type: 3}
       propertyPath: bounceForce
-      value: 100
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 208195674365577424, guid: a7ed66c5afd6ac14eae8a95b5049485c, type: 3}
       propertyPath: m_Offset.y
