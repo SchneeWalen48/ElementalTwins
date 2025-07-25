@@ -146,10 +146,7 @@ public class Player : MonoBehaviour
 
       parentCoroutine =  StartCoroutine(SetParentDelay(collision.transform));
     }
-    if (collision.gameObject.CompareTag("Portal"))
-    {
-      // TODO : 클리어 화면, 기록 보여주기.
-    }
+        if (collision.gameObject.CompareTag("Portal")) { }
   }
 
   private void OnCollisionExit2D(Collision2D collision)
