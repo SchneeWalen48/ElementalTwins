@@ -26,6 +26,11 @@ public class PauseManager : MonoBehaviour
         PauseGame();
       else
         ResumeGame();
+
+    }
+    if (isPaused && Input.GetKeyDown(KeyCode.R))
+    {
+      RestartGame();
     }
   }
 
