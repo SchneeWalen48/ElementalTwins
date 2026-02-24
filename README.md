@@ -6,6 +6,7 @@
 ## 🎯 게임 소개
 
 **2D 퍼즐 플랫포머 게임**입니다.
+<table>
 <tr>
   <td>
     <img width="50%" alt="image" src="https://github.com/user-attachments/assets/35dcfef2-b021-4da3-b169-5b22e9fbaf2d" />
@@ -14,6 +15,7 @@
     <img width="50%" alt="image" src="https://github.com/user-attachments/assets/e0357d8c-82db-4755-863a-cf8b5e59e331" />  
   </td>
 </tr>
+</table>
 
 - 플랫폼: PC  
 - 개발 엔진: Unity 2022
