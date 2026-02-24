@@ -16,7 +16,7 @@
 
 ---
 
-플래시 게임 'Firegirl and Waterboy'를 레퍼런스로 하여 액션 요소를 가미한 2D 게임입니다.
+플래시 게임 'Firegirl and Waterboy'를 레퍼런스로 하여 슈팅 요소를 가미한 2D 게임입니다.
 <br>
 Enemy의 행동은 FSM 기반으로 구현하여 상태 전환을 명확히 관리했습니다.
 
