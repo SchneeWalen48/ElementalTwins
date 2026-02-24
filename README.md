@@ -2,6 +2,10 @@
 
 # 🎮 Elemental Twins  
 ### 2D 슈팅 퍼즐 플랫포머 게임
+<a href="https://youtu.be/cw7UsJVFe5k">
+  <img width="100" height="100" alt="Youtube_logo"
+    src="https://github.com/user-attachments/assets/2aa6f449-7ffa-4dd2-9086-232f5499456f" />
+</a>
 
 ## 🎯 게임 소개
 
